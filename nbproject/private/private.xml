@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/Users/adrianaldairleyvasanchez/Documents/Projects/EDProject3/src/controller/Controller.java</file>
             <file>file:/Users/adrianaldairleyvasanchez/Documents/Projects/EDProject3/src/controller/Main.java</file>
+=======
+            <file>file:/Users/kevingamboa17/Documents/Develop/Java_Projects/EDProject3/src/controller/Main.java</file>
+            <file>file:/Users/kevingamboa17/Documents/Develop/Java_Projects/EDProject3/src/model/Model1.java</file>
+            <file>file:/Users/kevingamboa17/Documents/Develop/Java_Projects/EDProject3/src/controller/Controller.java</file>
+            <file>file:/Users/kevingamboa17/Documents/Develop/Java_Projects/EDProject3/src/view/View.java</file>
+>>>>>>> 82e59dd7b09e22078d3dec8184843f0b2ce7c008
         </group>
     </open-files>
 </project-private>
