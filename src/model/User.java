@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 
-public class User {
-    long id;
-    String screen_name;    
-=======
 package model;
 
 public class User {
@@ -19,5 +14,4 @@ public class User {
     }
     
     
->>>>>>> 82e59dd7b09e22078d3dec8184843f0b2ce7c008
 }
