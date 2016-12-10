@@ -4,26 +4,16 @@
  * and open the template in the editor.
  */
 package controller;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import view.View;
-
 /**
  *
  * @author kevingamboa17
  */
-public class Controller implements ActionListener{
-    View view;
+public class Controller {
 
-    public Controller(View view) {
-        this.view = view;
+    public Controller() {
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
     
     
     

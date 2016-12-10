@@ -6,7 +6,7 @@
 package controller;
 
 import view.View;
-import controller.Controller;
+import controller.ControllerView;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Main {
         View view = new View();
         view.setVisible(true);
         view.setTitle("Proyecto 3 ED");
-        Controller controller = new Controller(view);
+        ControllerView controller = new ControllerView(view);
     }
     
 }
