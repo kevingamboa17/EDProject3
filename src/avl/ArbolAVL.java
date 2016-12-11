@@ -6,6 +6,7 @@
 package avl;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import persistence.Serializer;
 
@@ -13,7 +14,7 @@ import persistence.Serializer;
  *
  * @author Marco
  */
-public class ArbolAVL {
+public class ArbolAVL implements Serializable{
     protected NodoAVL raiz;
     
     public ArbolAVL(Object o){

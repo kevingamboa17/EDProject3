@@ -19,7 +19,7 @@ public class Hash implements Serializable{
     
     private Tweet tweet;
     private final int size = 1000;
-    private Object[] table = new String[size];
+    private Object[] table = new Object[size];
 
     public Hash() {
     }
