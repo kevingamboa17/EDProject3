@@ -7,7 +7,7 @@ package avl;
 
 /**
  *
- * @author adrianaldairleyvasanchez
+ * @author Marco
  */
 public class ArbolAVL {
     protected NodoAVL raiz;
@@ -35,158 +35,149 @@ public class ArbolAVL {
         insertarOrdenado(raiz,o);
     }
     
+    
+    
     private void insertarOrdenado(NodoAVL n, Object o){
-        if((Integer)o < (Integer)n.getDato()){
-            if(n.getIzq() == null){
+        String raiz = (String) n.getDato();
+        if(raiz.compareTo((String) o) < 0){
+            if(n.getIzq()==null){
                 n.setIzq(new NodoAVL(o,null,null,n));
                 recalcularFE(n);
-            }else{
+            }
+            else
                 insertarOrdenado((NodoAVL)n.getIzq(),o);
-            }
-        }else{
-            if((Integer)o > (Integer)n.getDato()){
-                if(n.getDer() == null){
-                    n.setDer(new NodoAVL(o,null,null,n));
-                    recalcularFE(n);
-                }else{
-                    insertarOrdenado((NodoAVL)n.getDer(),o);
-                }
-            }
         }
+        else{
+            if(raiz.compareTo((String) o) > 0){
+            if(n.getDer()==null){
+                n.setDer(new NodoAVL(o,null,null,n));
+                recalcularFE(n);
+            }
+            else
+                insertarOrdenado((NodoAVL)n.getDer(),o);
+        }
+    }
     }
     
     public void recalcularFE(NodoAVL nodo){
         if(nodo!=null){
-            nodo.setFe(NodoAVL.altura((NodoAVL)nodo.getDer())-
-                                        NodoAVL.altura((NodoAVL)nodo.getIzq()));
-        
-            if(nodo.getFe()==2 || nodo.getFe() == -2){
+            nodo.setFe(NodoAVL.altura((NodoAVL)nodo.getDer())- NodoAVL.altura((NodoAVL)nodo.getIzq()));
+            if(nodo.getFe()==2 || nodo.getFe() == -2)
                 balancear(nodo);
-            }else{
+            else
                 recalcularFE(nodo.getPadre());
-            }
         }
     }
     
     public void balancear(NodoAVL nodo){
-        int feActual = nodo.getFe();
-        if(feActual == 2){
-            switch(((NodoAVL)nodo.getDer()).getFe()){
-                case 0:
-                    break;
-                case 1:
-                    rotacionDD(nodo);
-                    System.out.println("Rotación DD");
-                    break;
-                case -1:
-                    rotacionDI(nodo);
-                    System.out.println("Rotación DI");
-                    break;
+    int feActual = nodo.getFe();
+    if(feActual==2){
+        switch(((NodoAVL)nodo.getDer()).getFe()){
+            case 0:
+            case 1:
+                rotacionDD(nodo);
+                System.out.println("Rotacion DD");
+                break;
+            case -1:
+                rotacionDI(nodo);
+                System.out.println("Rotacion DI");
+                break;
             }
-        }else{
-            switch(((NodoAVL)nodo.getDer()).getFe()){
-                case 0:
-                    break;
-                case -1:
-                    rotacionII(nodo);
-                    System.out.println("Rotación II");
-                    break;
-                case 1:
-                    rotacionID(nodo);
-                    System.out.println("Rotación ID");
-                    break;
+        }
+    else{
+        switch(((NodoAVL)nodo.getIzq()).getFe()){
+            case 0:
+            case -1:
+                rotacionII(nodo);
+                System.out.println("Rotacion II");
+                break;
+            case 1:
+                rotacionID(nodo);
+                System.out.println("Rotacion ID");
+                break;
             }
         }
     }
     
     public void rotacionDD(NodoAVL nodo){
-        NodoAVL Padre = nodo.getPadre();
+        NodoAVL padre = nodo.getPadre();
         NodoAVL P = nodo;
         NodoAVL Q = (NodoAVL)P.getDer();
         NodoAVL B = (NodoAVL)Q.getIzq();
         
-        if(Padre!=null)
-            if(Padre.getDer()==P)
-                Padre.setDer(Q);
+        if(padre!= null)
+            if(padre.getDer()==P)
+                padre.setDer(Q);
             else
-                Padre.setIzq(Q);
+                padre.setIzq(Q);
         else
-            raiz = Q;
-        
-        //Reconstruir el árbol
+            raiz= Q;
+        //Reconstruir el arbol
         P.setDer(B);
         Q.setIzq(P);
         
-        //Reasignar padres
+        //Reasignar papas
         P.setPadre(Q);
-        if(B!=null)
-            B.setPadre(P);
-        Q.setPadre(Padre);
-        
+        if(B!=null) B.setPadre(P);
+        Q.setPadre(padre);
         //Ajustar los FE
         P.setFe(0);
         Q.setFe(0);
+            
     }
-    
     public void rotacionII(NodoAVL nodo){
-        NodoAVL Padre = nodo.getPadre();
+        NodoAVL padre = nodo.getPadre();
         NodoAVL P = nodo;
         NodoAVL Q = (NodoAVL)P.getIzq();
         NodoAVL B = (NodoAVL)Q.getDer();
         
-        if(Padre!=null)
-            if(Padre.getIzq()==P)
-                Padre.setIzq(Q);
+        if(padre!= null)
+            if(padre.getIzq()==P)
+                padre.setIzq(Q);
             else
-                Padre.setDer(Q);
+                padre.setDer(Q);
         else
-            raiz = Q;
-        
-        //Reconstruir el árbol
+            raiz= Q;
+        //Reconstruir el arbol
         P.setIzq(B);
         Q.setDer(P);
         
-        //Reasignar padres
+        //Reasignar papas
         P.setPadre(Q);
-        if(B!=null)
-            B.setPadre(P);
-        Q.setPadre(Padre);
-        
+        if(B!=null) B.setPadre(P);
+        Q.setPadre(padre);
         //Ajustar los FE
         P.setFe(0);
         Q.setFe(0);
     }
-    
     public void rotacionID(NodoAVL nodo){
-        NodoAVL Padre = nodo.getPadre();
+        NodoAVL padre = nodo.getPadre();
         NodoAVL P = nodo;
         NodoAVL Q = (NodoAVL)P.getIzq();
         NodoAVL R = (NodoAVL)Q.getDer();
         NodoAVL B = (NodoAVL)R.getIzq();
         NodoAVL C = (NodoAVL)R.getDer();
         
-        if(Padre!=null)
-            if(Padre.getDer()==nodo)
-                Padre.setDer(R);
+        if(padre!= null)
+            if(padre.getDer()==nodo)
+                padre.setDer(R);
             else
-                Padre.setIzq(R);
+                padre.setIzq(R);
         else
-            raiz = R;
+            raiz=R;
         
-        //Reconstruir el árbol
+        //Reconstruir el arbol
         Q.setDer(B);
         P.setIzq(C);
         R.setIzq(Q);
         R.setDer(P);
         
-        //Reasignar padres
-        R.setPadre(Padre);
+        //Reasignación de los padres
+        R.setPadre(padre);
         P.setPadre(R);
         Q.setPadre(R);
-        if(B!=null)
-            B.setPadre(Q);
-        if(C!=null)
-            C.setPadre(P);
+        if (B!=null) B.setPadre(Q);
+        if (C!=null) C.setPadre(P);
         
         //Asignar valores de los FE
         switch(R.getFe()){
@@ -204,37 +195,34 @@ public class ArbolAVL {
                 break;
         }
     }
-    
     public void rotacionDI(NodoAVL nodo){
-        NodoAVL Padre = nodo.getPadre();
+        NodoAVL padre = nodo.getPadre();
         NodoAVL P = nodo;
         NodoAVL Q = (NodoAVL)P.getDer();
         NodoAVL R = (NodoAVL)Q.getIzq();
         NodoAVL B = (NodoAVL)R.getDer();
         NodoAVL C = (NodoAVL)R.getIzq();
         
-        if(Padre!=null)
-            if(Padre.getIzq()==nodo)
-                Padre.setIzq(R);
+        if(padre!= null)
+            if(padre.getIzq()==nodo)
+                padre.setIzq(R);
             else
-                Padre.setDer(R);
+                padre.setDer(R);
         else
-            raiz = R;
+            raiz=R;
         
-        //Reconstruir el árbol
+        //Reconstruir el arbol
         Q.setIzq(B);
         P.setDer(C);
         R.setDer(Q);
         R.setIzq(P);
         
-        //Reasignar padres
-        R.setPadre(Padre);
+        //Reasignación de los padres
+        R.setPadre(padre);
         P.setPadre(R);
         Q.setPadre(R);
-        if(B!=null)
-            B.setPadre(Q);
-        if(C!=null)
-            C.setPadre(P);
+        if (B!=null) B.setPadre(Q);
+        if (C!=null) C.setPadre(P);
         
         //Asignar valores de los FE
         switch(R.getFe()){
@@ -253,16 +241,20 @@ public class ArbolAVL {
         }
     }
     
+    
     public static void main(String[] args) {
-        ArbolAVL arbol = new ArbolAVL((5));
-        arbol.insertar(56);
-        arbol.insertar(8);
-        arbol.insertar(91);
-        arbol.insertar(205);
-        arbol.insertar(512);
-        arbol.insertar(30);
-        arbol.insertar(602);
+        
+        ArbolAVL arbol = new ArbolAVL("@Perro");
+        arbol.insertar("@tina");
+        arbol.insertar("@nati");
+        arbol.insertar("@gato");
+        arbol.insertar("@zorro");
+        arbol.insertar("@caballo");
+        
         
         arbol.inOrden();
+
+        
+        
     }
 }

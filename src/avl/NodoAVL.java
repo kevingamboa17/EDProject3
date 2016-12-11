@@ -7,18 +7,21 @@ package avl;
 
 import arboles.NodoBin;
 
+
+
 /**
  *
- * @author adrianaldairleyvasanchez
+ * @author Marco
  */
-public class NodoAVL extends NodoBin {
+public class NodoAVL extends NodoBin{
     protected int fe;
     protected NodoAVL padre;
-
-    public NodoAVL() {
+    
+    public NodoAVL(){
+        
     }
-
-    public NodoAVL(Object dato) {
+    
+    public NodoAVL(Object dato){
         super(dato);
     }
 
@@ -30,27 +33,26 @@ public class NodoAVL extends NodoBin {
         super(dato, izq, der);
         this.padre = padre;
     }
-    
-    public static int altura(NodoAVL a){
-        if(a == null){
-            return -1;
-        }else{
-            return 1 + Math.max(altura((NodoAVL)a.getIzq()),altura((NodoAVL)a.getDer()));
-        }
-    }
 
+    public static int altura(NodoAVL a){
+        if(a==null)
+            return -1;
+        else
+            return 1 + Math.max(altura((NodoAVL)a.getIzq()), altura((NodoAVL)a.getDer()));
+    }
+    
     public void inOrden(){
         if(izq!=null)
             izq.inOrden();
-        System.out.println(dato + " FE:" + fe);
+        System.out.println(dato+" FE:" + fe);
         if(der!=null)
             der.inOrden();
     }
     
     public void preOrden(){
-        System.out.println(dato + " FE:" + fe);
+        System.out.println(dato+" FE:" + fe);
         if(izq!=null)
-                izq.preOrden();
+            izq.preOrden();       
         if(der!=null)
             der.preOrden();
     }
@@ -60,7 +62,7 @@ public class NodoAVL extends NodoBin {
             izq.posOrden();
         if(der!=null)
             der.posOrden();
-        System.out.println(dato + " FE:" + fe);
+        System.out.println(dato+" FE:" + fe);
     }
     
     public int getFe() {
@@ -78,7 +80,6 @@ public class NodoAVL extends NodoBin {
     public void setPadre(NodoAVL padre) {
         this.padre = padre;
     }
-    
     
     
 }
