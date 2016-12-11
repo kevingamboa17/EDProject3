@@ -1,6 +1,9 @@
 package controller;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import model.Tweet;
+import persistence.Serializer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +15,8 @@ import model.Tweet;
  *
  * @author adrianaldairleyvasanchez
  */
-public class Hash {
+public class Hash implements Serializable{
+    
     private Tweet tweet;
     private final int size = 1000;
     private Object[] table = new String[size];
@@ -56,8 +60,9 @@ public class Hash {
         }
     }
     
-    public Object[] getTable() {
-        return table;
+    public Object[] getTable() throws IOException{
+        Serializer.serializeObject("hashtable.txt", table);
+        return (Object[])Serializer.deserializeObject("hashtable.txt");
     }
 
     public void setTweet(Tweet tweet) {
@@ -66,12 +71,12 @@ public class Hash {
     
     
     
-    public static void main(String[] args) {
-        Tweet tweet = new Tweet("I'm just testing my code", "AdrianLeyva");
+    public static void main(String[] args) throws IOException {
+        Tweet tweet = new Tweet("This is another test to proof my code", "AdrianLeyvaSanchez");
         Hash hash = new Hash();
         hash.setTweet(tweet);
         System.out.println(hash.dispersion());
-        System.out.println(hash.getTable()[60]);
+        System.out.println(hash.getTable()[6]);
     }
     
     
