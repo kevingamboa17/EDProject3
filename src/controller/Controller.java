@@ -24,7 +24,7 @@ public class Controller {
         return initProcess(persistence.getLocalTweets(fileName));
     }
     
-    public String[] extractUsers(ArrayList<Tweet> array){
+    private String[] extractUsers(ArrayList<Tweet> array){
         String[] userStrings= new String[array.size()];
         for(int i=0; i<array.size();i++){
             userStrings[i]= ((Tweet) array.get(i)).getUser().getScreen_name();
