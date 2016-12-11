@@ -6,6 +6,7 @@
 package avl;
 
 import arboles.NodoBin;
+import java.util.ArrayList;
 
 
 
@@ -16,13 +17,15 @@ import arboles.NodoBin;
 public class NodoAVL extends NodoBin{
     protected int fe;
     protected NodoAVL padre;
+    public static ArrayList list;
     
     public NodoAVL(){
-        
+        list = new ArrayList(); 
     }
     
     public NodoAVL(Object dato){
         super(dato);
+        list = new ArrayList();
     }
 
     public NodoAVL(Object dato, NodoBin izq, NodoBin der) {
@@ -42,11 +45,34 @@ public class NodoAVL extends NodoBin{
     }
     
     public void inOrden(){
+        
+        
         if(izq!=null)
             izq.inOrden();
-        System.out.println(dato+" FE:" + fe);
+        //System.out.println(dato);
+        list.add(dato);
+        if(der!=null)
+            der.inOrden();   
+    }
+    
+    public ArrayList doInOrden(){
+        
+        if(izq!=null)
+            izq.inOrden();
+        list.add(dato);
         if(der!=null)
             der.inOrden();
+        
+        return list;
+    }
+    
+    public ArrayList orden(){
+        ArrayList users = new ArrayList();
+        
+        
+        
+        
+        return users;
     }
     
     public void preOrden(){
