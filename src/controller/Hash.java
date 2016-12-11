@@ -17,8 +17,7 @@ public class Hash {
     private final int size = 1000;
     private Object[] table = new String[size];
 
-    public Hash(Tweet tweet) {
-        this.tweet = tweet;
+    public Hash() {
     }
     
     
@@ -27,9 +26,11 @@ public class Hash {
         double hashcode;
         double val = 0;
         
-        for(int i=0;i<userName.length();i++){
+        /*for(int i=0;i<userName.length();i++){
             val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
-        }
+        }*/
+        
+        val = (userName.length()*278) + 2;
         
         hashcode = val%size;
         
@@ -58,12 +59,19 @@ public class Hash {
     public Object[] getTable() {
         return table;
     }
+
+    public void setTweet(Tweet tweet) {
+        this.tweet = tweet;
+    }
+    
+    
     
     public static void main(String[] args) {
         Tweet tweet = new Tweet("I'm just testing my code", "AdrianLeyva");
-        Hash hash = new Hash(tweet);
+        Hash hash = new Hash();
+        hash.setTweet(tweet);
         System.out.println(hash.dispersion());
-        System.out.println(hash.getTable()[272]);
+        System.out.println(hash.getTable()[60]);
     }
     
     
