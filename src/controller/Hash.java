@@ -19,7 +19,7 @@ public class Hash implements Serializable{
     
     private Tweet tweet;
     private final int size = 1000;
-    private Object[] table = new String[size];
+    private Object[] table = new Object[size];
 
     public Hash() {
     }
@@ -37,7 +37,6 @@ public class Hash implements Serializable{
         val = (userName.length()*278) + 2;
         
         hashcode = val%size;
-        
         if(table[(int)hashcode] == null)
             table[(int)hashcode] = tweet.getText();
         else
@@ -53,7 +52,7 @@ public class Hash implements Serializable{
             ArrayList list = (ArrayList)table[hashcode];
             list.add(TweetText);
         }else{
-            ArrayList list = new ArrayList();
+            ArrayList<Object> list = new ArrayList<>();
             list.add(table[hashcode]);
             list.add(TweetText);
             table[hashcode] = list;
@@ -73,10 +72,13 @@ public class Hash implements Serializable{
     
     public static void main(String[] args) throws IOException {
         Tweet tweet = new Tweet("This is another test to proof my code", "AdrianLeyvaSanchez");
+        Tweet tweet2 = new Tweet("This is another test to proof my code", "AdrianLeyvaSanchez");
         Hash hash = new Hash();
         hash.setTweet(tweet);
         System.out.println(hash.dispersion());
         System.out.println(hash.getTable()[6]);
+        hash.setTweet(tweet);
+        System.out.println(hash.dispersion());
     }
     
     
