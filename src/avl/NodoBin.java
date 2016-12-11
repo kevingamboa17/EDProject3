@@ -5,6 +5,8 @@
  */
 package avl;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Marco
@@ -29,27 +31,36 @@ public class NodoBin {
     
     //IRD
     public void inOrden(){
+        
         if(izq!=null)
             izq.inOrden();
         System.out.println(dato);
         if(der!=null)
             der.inOrden();
+        
+        
     }
     
     public void preOrden(){
+        
         System.out.println(dato);
         if(izq!=null)
             izq.preOrden();
         if(der!=null)
             der.preOrden();
+        
+        
     }
     
     public void posOrden(){
+        
         if(izq!=null)
             izq.posOrden();
         if(der!=null)
             der.posOrden();
+        
         System.out.println(dato);
+        
     }
 
     public Object getDato() {
