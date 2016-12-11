@@ -5,6 +5,8 @@
  */
 package arboles;
 
+import avl.NodoAVL;
+
 /**
  *
  * @author adrianleyva
@@ -30,7 +32,8 @@ public class NodoBin {
     public void inOrden(){
         if(izq!=null)
             izq.inOrden();
-        System.out.println(dato);
+        //System.out.println(dato);
+        NodoAVL.list.add(dato);
         if(der!=null)
             der.inOrden();
     }
