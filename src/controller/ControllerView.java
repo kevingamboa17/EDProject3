@@ -8,8 +8,11 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Tweet;
@@ -34,9 +37,15 @@ public class ControllerView implements ActionListener{
         if (view.getjButton_ShowTweets() == e.getSource()){
             //Provisional Code
             //Init the controller
+            Controller controller = new Controller();
+            
             String fileName = getFileName();
-            //ArrayList<Tweet> arrayTweets = controller.getTweets(fileName)
-            //fillJtable(arrayTweets);
+            try {
+                ArrayList<Tweet> arrayTweets = controller.getTweets(fileName);
+                fillJtable(arrayTweets);
+            } catch (IOException ex) {
+                Logger.getLogger(ControllerView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -59,7 +68,7 @@ public class ControllerView implements ActionListener{
             case 0:
                 return "LocalTweets.txt";
             case 1:
-                return "fileName2.txt";
+                return "prueba.txt";
             case 2:
                 return "fileName3.txt";
             case 3:

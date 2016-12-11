@@ -30,11 +30,11 @@ public class Hash implements Serializable{
         double hashcode;
         double val = 0;
         
-        /*for(int i=0;i<userName.length();i++){
+        for(int i=0;i<userName.length();i++){
             val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
-        }*/
+        }
         
-        val = (userName.length()*278) + 2;
+        //val = (userName.length()*278) + 2;
         
         hashcode = val%size;
         
@@ -46,15 +46,32 @@ public class Hash implements Serializable{
         
         return (int)hashcode;
     }
+    
+    public Object getHashTableElement(String user){
+        String userName = user;
+        double hashcode;
+        double val = 0;
+        
+        for(int i=0;i<userName.length();i++){
+            val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
+        }
+        
+        //val = (userName.length()*278) + 2;
+        
+        hashcode = val%size;
+        
+        
+        return table[(int)hashcode];
+    }
 
     
     private void solveCollisions(int hashcode, String TweetText){
-        if(table[hashcode].getClass().isInstance(new ArrayList())){
-            ArrayList list = (ArrayList)table[hashcode];
+        if(table[hashcode].getClass().isInstance(new ArrayList<String>())){
+            ArrayList<String> list = (ArrayList<String>)table[hashcode];
             list.add(TweetText);
         }else{
-            ArrayList list = new ArrayList();
-            list.add(table[hashcode]);
+            ArrayList<String> list = new ArrayList<>();
+            list.add((String)table[hashcode]);
             list.add(TweetText);
             table[hashcode] = list;
         }
@@ -73,10 +90,13 @@ public class Hash implements Serializable{
     
     public static void main(String[] args) throws IOException {
         Tweet tweet = new Tweet("This is another test to proof my code", "AdrianLeyvaSanchez");
+        Tweet tweet2 = new Tweet("This is another test to proof my code", "MarcoChavez");
         Hash hash = new Hash();
         hash.setTweet(tweet);
         System.out.println(hash.dispersion());
         System.out.println(hash.getTable()[6]);
+        hash.setTweet(tweet2);
+        System.out.println(hash.dispersion());
     }
     
     

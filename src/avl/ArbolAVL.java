@@ -5,7 +5,9 @@
  */
 package avl;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import persistence.Serializer;
 
 /**
  *
@@ -16,6 +18,18 @@ public class ArbolAVL {
     
     public ArbolAVL(Object o){
         raiz = new NodoAVL(o);
+    }
+    
+    public ArbolAVL(String[] users){
+        
+        int tamaño = users.length;
+        
+        ArbolAVL arbol = new ArbolAVL(users[0]);
+        
+        for(int i= 1;i<tamaño;i++){
+            arbol.insertar(users[i]);
+        }
+        
     }
     
     public void inOrden(){
@@ -249,21 +263,11 @@ public class ArbolAVL {
         }
     }
     
-    public void createAVL(String[] users){
-        
-        int tamaño = users.length;
-        
-        ArbolAVL arbol = new ArbolAVL(users[0]);
-        
-        for(int i= 1;i<tamaño;i++){
-            arbol.insertar(users[i]);
-        }
-        
-    }
     
-    public ArrayList getUserAVL(ArbolAVL arbol){
-        ArrayList users = arbol.doInOrden();
-        
+    
+    public ArrayList getUserAVL(ArbolAVL arbol) throws IOException{
+        Serializer.serializeObject("ArbolAVL.txt", arbol);
+        ArrayList<String> users = ((ArbolAVL)Serializer.deserializeObject("ArbolAVL.txt")).doInOrden();
         return users;
     }
     

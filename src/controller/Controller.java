@@ -5,6 +5,8 @@
  */
 package controller;
 
+import avl.ArbolAVL;
+import java.io.IOException;
 import java.util.ArrayList;
 import model.Tweet;
 import persistence.Persistence;
@@ -19,9 +21,9 @@ public class Controller {
         
     }
     
-    public ArrayList<Tweet> getTweets(String fileName){
+    public ArrayList<Tweet> getTweets(String fileName) throws IOException{
         Persistence persistence = new Persistence();
-        return initProcess(persistence.getLocalTweets(fileName));
+        return orderTweets(persistence.getLocalTweets(fileName));
     }
     
     private String[] extractUsers(ArrayList<Tweet> array){
@@ -32,9 +34,34 @@ public class Controller {
         return userStrings;
     }
     
-    public ArrayList<Tweet> initProcess(ArrayList<Tweet> arrayList){
+    private ArrayList<Tweet> orderTweets(ArrayList<Tweet> arrayList) throws IOException{
         Hash hash = new Hash();
+        ArrayList<Tweet> tweetsOrdened = new ArrayList<>();
+        //Create the hash table
+        for(Tweet i: arrayList){
+            hash.setTweet(i);
+            hash.dispersion();
+        }
         
-        return null;
+        //Create and order the ArbolAVL with the users
+        ArbolAVL arbol = new ArbolAVL(extractUsers(arrayList));
+        ArrayList<String> usersOrdened =  arbol.getUserAVL(arbol);
+        
+        //Extract the tweets of the hashtable with the users ordered and make the tweets
+        for(String user:usersOrdened){
+            if (hash.getHashTableElement(user).getClass().isInstance(new ArrayList<String>())){
+                for(String content: (ArrayList<String>)hash.getHashTableElement(user)){
+                    tweetsOrdened.add(makeTweet(user, content));
+                }
+            }
+            else
+                tweetsOrdened.add(makeTweet(user, (String)hash.getHashTableElement(user)));        
+        }
+        return tweetsOrdened;
+        
+    }
+    
+    public Tweet makeTweet(String users, String tweetContent){
+        return new Tweet(tweetContent, users);
     }
 }
