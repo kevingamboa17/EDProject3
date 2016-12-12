@@ -70,12 +70,13 @@
     <Component class="javax.swing.JComboBox" name="jComboBox_TT">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Harry potter"/>
-            <StringItem index="1" value="Hogwarts"/>
-            <StringItem index="2" value="Winterfell"/>
-            <StringItem index="3" value="Kingslanding"/>
-            <StringItem index="4" value="Gotham"/>
+          <StringArray count="6">
+            <StringItem index="0" value="Topic1"/>
+            <StringItem index="1" value="Topic2"/>
+            <StringItem index="2" value="Topic3"/>
+            <StringItem index="3" value="Topic4"/>
+            <StringItem index="4" value="Topic5"/>
+            <StringItem index="5" value="Prueba"/>
           </StringArray>
         </Property>
       </Properties>
