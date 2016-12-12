@@ -6,6 +6,7 @@
 package avl;
 
 import arboles.NodoBin;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Marco
  */
-public class NodoAVL extends NodoBin{
+public class NodoAVL extends NodoBin implements Serializable{
     protected int fe;
     protected NodoAVL padre;
     public static ArrayList list;
