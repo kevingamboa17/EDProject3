@@ -32,7 +32,7 @@ public class Hash implements Serializable{
         double hashcode;
         double val = 0;
         
-        for(int i=0;i<userName.length();i++){
+       for(int i=0;i<userName.length();i++){
             val = val + userName.codePointAt(i) * Math.pow(31,userName.length()-(i+1));
         }
         

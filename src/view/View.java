@@ -43,7 +43,7 @@ public class View extends javax.swing.JFrame {
 
         jLabel_TT.setText("TT:");
 
-        jComboBox_TT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harry potter", "Hogwarts", "Winterfell", "Kingslanding", "Gotham" }));
+        jComboBox_TT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Topic1", "Topic2", "Topic3", "Topic4", "Topic5", "Prueba" }));
 
         jButton_ShowTweets.setText("Mostrar");
 

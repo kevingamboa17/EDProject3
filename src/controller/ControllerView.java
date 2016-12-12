@@ -71,15 +71,17 @@ public class ControllerView implements ActionListener{
     public String getFileName(){
         switch ((int)view.getjComboBox_TT().getSelectedIndex()){
             case 0:
-                return "LocalTweets.txt";
+                return "Topic1.txt";
             case 1:
-                return "prueba.txt";
+                return "Topic2.txt";
             case 2:
-                return "fileName3.txt";
+                return "Topic3.txt";
             case 3:
-                return "fileName4.txt";
+                return "Topic4.txt";
             case 4:
-                return "fileName5.txt";
+                return "Topic5.txt";
+            case 5:
+                return "prueba.txt";
         }
         return null;
     }
