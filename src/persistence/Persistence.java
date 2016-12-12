@@ -25,12 +25,14 @@ public class Persistence {
         ArrayList<Tweet> arrayList = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File(fileName));
+
+            //for(int i=0; i<1000; i++){
+              while(sc.hasNextLine()) {
+                arrayList.add(makeTweet(sc.nextLine()));
+              }  
+            //}
+
             
-            while(sc.hasNextLine()) {
-              arrayList.add(makeTweet(sc.nextLine()));
-            }  
-          
-            sc.close();
         } 
         catch (Exception e) {
             System.out.println("Algo salió mal :C");

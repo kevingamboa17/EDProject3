@@ -17,6 +17,8 @@ import persistence.Serializer;
  */
 public class Hash implements Serializable{
     
+    
+    
     private Tweet tweet;
     private final int size = 1000;
     private Object[] table = new Object[size];
@@ -34,9 +36,14 @@ public class Hash implements Serializable{
             val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
         }*/
         
-        val = (userName.length()*5);
+        for(int j=0;j<userName.length();j++){
+            val = val + userName.codePointAt(j);
+        }
+
+        val = (val*5);
         
         hashcode = val%size;
+
         if(table[(int)hashcode] == null)
             table[(int)hashcode] = tweet.getText();
         else
@@ -52,10 +59,14 @@ public class Hash implements Serializable{
         double val = 0;
         
         /*for(int i=0;i<userName.length();i++){
-            val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
+            val = val + userName.codePointAt(i) * Math.pow(31,userName.length()-(i+1));
         }*/
         
-        val = (userName.length()*5);
+        for(int j=0;j<userName.length();j++){
+            val = val + userName.codePointAt(j);
+        }
+
+        val = (val*5);
         
         hashcode = val%size;
         

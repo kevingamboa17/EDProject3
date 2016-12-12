@@ -53,7 +53,7 @@ public class ArbolAVL implements Serializable{
     
     private void insertarOrdenado(NodoAVL n, Object o){
         String raiz = (String) n.getDato();
-        if(raiz.compareTo((String) o) < 0){
+        if(raiz.compareTo((String) o) > 0){
             if(n.getIzq()==null){
                 n.setIzq(new NodoAVL(o,null,null,n));
                 recalcularFE(n);
@@ -62,7 +62,7 @@ public class ArbolAVL implements Serializable{
                 insertarOrdenado((NodoAVL)n.getIzq(),o);
         }
         else{
-            if(raiz.compareTo((String) o) > 0){
+            if(raiz.compareTo((String) o) < 0){
             if(n.getDer()==null){
                 n.setDer(new NodoAVL(o,null,null,n));
                 recalcularFE(n);

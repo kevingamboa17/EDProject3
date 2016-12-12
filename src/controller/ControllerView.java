@@ -5,6 +5,7 @@
  */
 package controller;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -43,6 +44,10 @@ public class ControllerView implements ActionListener{
             try {
                 ArrayList<Tweet> arrayTweets = controller.getTweets(fileName);
                 fillJtable(arrayTweets);
+                
+                
+                
+                
             } catch (IOException ex) {
                 Logger.getLogger(ControllerView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -76,7 +81,7 @@ public class ControllerView implements ActionListener{
             case 4:
                 return "Topic5.txt";
             case 5:
-                return "prueba.txt";
+                return "proof.txt";
         }
         return null;
     }
