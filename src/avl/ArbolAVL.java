@@ -5,20 +5,43 @@
  */
 package avl;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import persistence.Serializer;
+
 /**
  *
  * @author Marco
  */
-public class ArbolAVL {
+public class ArbolAVL implements Serializable{
     protected NodoAVL raiz;
     
     public ArbolAVL(Object o){
         raiz = new NodoAVL(o);
     }
     
+    public ArbolAVL(String[] users){
+        
+        int tamaño = users.length;
+        
+        ArbolAVL arbol = new ArbolAVL(users[0]);
+        
+        for(int i= 1;i<tamaño;i++){
+            arbol.insertar(users[i]);
+        }
+        
+    }
+    
     public void inOrden(){
         if(raiz!=null)
             raiz.inOrden();
+    }
+    
+    public ArrayList doInOrden(){
+        if(raiz!=null)
+            return raiz.doInOrden();
+        return null;
     }
     
     public void preOrden(){
@@ -76,11 +99,11 @@ public class ArbolAVL {
             case 0:
             case 1:
                 rotacionDD(nodo);
-                System.out.println("Rotacion DD");
+                //System.out.println("Rotacion DD");
                 break;
             case -1:
                 rotacionDI(nodo);
-                System.out.println("Rotacion DI");
+                //System.out.println("Rotacion DI");
                 break;
             }
         }
@@ -89,11 +112,11 @@ public class ArbolAVL {
             case 0:
             case -1:
                 rotacionII(nodo);
-                System.out.println("Rotacion II");
+                //System.out.println("Rotacion II");
                 break;
             case 1:
                 rotacionID(nodo);
-                System.out.println("Rotacion ID");
+                //System.out.println("Rotacion ID");
                 break;
             }
         }
@@ -242,19 +265,13 @@ public class ArbolAVL {
     }
     
     
-    public static void main(String[] args) {
-        
-        ArbolAVL arbol = new ArbolAVL("@Perro");
-        arbol.insertar("@tina");
-        arbol.insertar("@nati");
-        arbol.insertar("@gato");
-        arbol.insertar("@zorro");
-        arbol.insertar("@caballo");
-        
-        
-        arbol.inOrden();
-
-        
-        
+    
+    public ArrayList getUserAVL(ArbolAVL arbol) throws IOException{
+        Serializer.serializeObject("ArbolAVL.txt", arbol);
+        ArrayList<String> users = ((ArbolAVL)Serializer.deserializeObject("ArbolAVL.txt")).doInOrden();
+        return users;
+    }
+    
+    public static void main(String[] args) {     
     }
 }
