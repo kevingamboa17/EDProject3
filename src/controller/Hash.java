@@ -27,14 +27,14 @@ public class Hash implements Serializable{
     
     public int dispersion(){
         String userName = tweet.getUser().getScreen_name();
-        double hashcode;
+        double hashcode = 0;
         double val = 0;
         
         /*for(int i=0;i<userName.length();i++){
             val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
         }*/
         
-        val = (userName.length()*278) + 2;
+        val = (userName.length()*5);
         
         hashcode = val%size;
         if(table[(int)hashcode] == null)
@@ -48,14 +48,14 @@ public class Hash implements Serializable{
     
     public Object getHashTableElement(String user){
         String userName = user;
-        double hashcode;
+        double hashcode = 0;
         double val = 0;
         
         /*for(int i=0;i<userName.length();i++){
             val = val + userName.charAt(i) * Math.pow(31,userName.length()-(i+1));
         }*/
         
-        val = (userName.length()*278) + 2;
+        val = (userName.length()*5);
         
         hashcode = val%size;
         
@@ -87,15 +87,16 @@ public class Hash implements Serializable{
     
     public static void main(String[] args) throws IOException {
         Tweet tweet = new Tweet("This is another test to proof my code", "AdrianLeyvaSanchez");
-        Tweet tweet2 = new Tweet("This is another test to proof my code", "AdrianLeyvaSanchez");
+        Tweet tweet2 = new Tweet("This is another test to proof my code22", "Leyva");
         
         Hash hash = new Hash();
         hash.setTweet(tweet);
         System.out.println(hash.dispersion());
-        System.out.println(hash.getTable()[6]);
+        System.out.println(hash.getTable()[90]);
 
         hash.setTweet(tweet2);
         System.out.println(hash.dispersion());
+        System.out.println(hash.getTable()[25]);
     }
     
     
