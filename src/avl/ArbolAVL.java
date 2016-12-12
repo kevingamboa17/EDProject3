@@ -16,22 +16,13 @@ import persistence.Serializer;
  */
 public class ArbolAVL implements Serializable{
     protected NodoAVL raiz;
-    
+
+
     public ArbolAVL(Object o){
         raiz = new NodoAVL(o);
     }
     
-    public ArbolAVL(String[] users){
-        
-        int tamaño = users.length;
-        
-        ArbolAVL arbol = new ArbolAVL(users[0]);
-        
-        for(int i= 1;i<tamaño;i++){
-            arbol.insertar(users[i]);
-        }
-        
-    }
+    
     
     public void inOrden(){
         if(raiz!=null)
@@ -271,7 +262,11 @@ public class ArbolAVL implements Serializable{
         ArrayList<String> users = ((ArbolAVL)Serializer.deserializeObject("ArbolAVL.txt")).doInOrden();
         return users;
     }
-    
-    public static void main(String[] args) {     
+     
+    public void createAVL(String[] users){
+        for(int i=1;i<users.length;i++){
+            insertar(users[i]);
+        }
     }
+    
 }

@@ -6,12 +6,13 @@
 package arboles;
 
 import avl.NodoAVL;
+import java.io.Serializable;
 
 /**
  *
  * @author adrianleyva
  */
-public class NodoBin {
+public class NodoBin implements Serializable{
     protected Object dato;
     protected NodoBin izq;
     protected NodoBin der;

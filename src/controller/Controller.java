@@ -45,10 +45,11 @@ public class Controller {
         }
         
         //Create and order the ArbolAVL with the users
-        ArbolAVL arbol = new ArbolAVL(extractUsers(arrayList));
-        System.out.println(extractUsers(arrayList));
+        ArbolAVL arbol = new ArbolAVL(extractUsers(arrayList)[0]);
+        arbol.createAVL(extractUsers(arrayList));
+        
         ArrayList<String> usersOrdened =  arbol.getUserAVL(arbol);
-        System.out.println(usersOrdened);
+        
         
         //Extract the tweets of the hashtable with the users ordered and make the tweets
         for(String user:usersOrdened){
