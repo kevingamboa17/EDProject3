@@ -27,10 +27,13 @@ public class Controller {
     }
     
     private String[] extractUsers(ArrayList<Tweet> array){
+        
         String[] userStrings= new String[array.size()];
         for(int i=0; i<array.size();i++){
             userStrings[i]= ((Tweet) array.get(i)).getUser().getScreen_name();
+            
         }
+        
         return userStrings;
     }
     
@@ -38,16 +41,20 @@ public class Controller {
         Hash hash = new Hash();
         ArrayList<Tweet> tweetsOrdened = new ArrayList<>();
         //Create the hash table
+        
+        
         for(Tweet i: arrayList){
             hash.setTweet(i);
             hash.dispersion();
         }
         
         //Create and order the ArbolAVL with the users
-        ArbolAVL arbol = new ArbolAVL(extractUsers(arrayList)[0]);
-        arbol.createAVL(extractUsers(arrayList));
+        String[] users = extractUsers(arrayList);
+        ArbolAVL arbol = new ArbolAVL(users[0]);
+        arbol.createAVL(users);
         
         ArrayList<String> usersOrdened =  arbol.getUserAVL(arbol);
+        
         
         
         //Extract the tweets of the hashtable with the users ordered and make the tweets

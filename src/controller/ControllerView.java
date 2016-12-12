@@ -5,6 +5,7 @@
  */
 package controller;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -43,6 +44,10 @@ public class ControllerView implements ActionListener{
             try {
                 ArrayList<Tweet> arrayTweets = controller.getTweets(fileName);
                 fillJtable(arrayTweets);
+                
+                
+                
+                
             } catch (IOException ex) {
                 Logger.getLogger(ControllerView.class.getName()).log(Level.SEVERE, null, ex);
             }
